@@ -21,6 +21,14 @@ public class EmotiguyIdentification : MonoBehaviour {
    int EmotiguySelector;
    int Stage;
 
+   KeyCode[] TypableKeys =
+   {
+      KeyCode.BackQuote, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4, KeyCode.Alpha5, KeyCode.Alpha6, KeyCode.Alpha7, KeyCode.Alpha8, KeyCode.Alpha9, KeyCode.Alpha0, KeyCode.Minus, KeyCode.Equals, KeyCode.Backspace,
+      KeyCode.Tab, KeyCode.Q, KeyCode.W, KeyCode.E, KeyCode.R, KeyCode.T, KeyCode.Y, KeyCode.U, KeyCode.I, KeyCode.O, KeyCode.P, KeyCode.LeftBracket, KeyCode.RightBracket, KeyCode.Backslash,
+      KeyCode.CapsLock, KeyCode.A, KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.G, KeyCode.H, KeyCode.J, KeyCode.K, KeyCode.L, KeyCode.Semicolon, KeyCode.Quote, KeyCode.Return,
+      KeyCode.LeftShift, KeyCode.Z, KeyCode.X, KeyCode.C, KeyCode.V, KeyCode.B, KeyCode.N, KeyCode.M, KeyCode.Comma, KeyCode.Period, KeyCode.Slash, KeyCode.RightShift,
+      KeyCode.LeftControl, KeyCode.LeftWindows, KeyCode.LeftAlt, KeyCode.Space, KeyCode.RightAlt, KeyCode.RightWindows, KeyCode.Menu, KeyCode.RightControl
+   };
    string[] Names = { "Anticipation", "Anxiety", "blahhhhhhh", "confusiob", "Death", "Despair", "Disgust", "Empty", "End", "Excitement", "Fear", "gary", "Grief", "Honor", "hoohfhhudf", "Imploration", "Innocence", "Insanity", "Intellect", "Joy", "Lust", "Misery", "Mystique", "Pleasure", "Rage", "Reflection", "Shock", "Sorrow", "Temptation", "the pain", "gluttony", "greed", "Fury", "ecstacy", "Trapped", "" };
    string KeyboardButShift = "~!@#$%^&*()_+QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?";
    string KeyboardButNotShift = "`1234567890-=qwertyuiop[]\\asdfghjkl;\'zxcvbnm,./";
@@ -37,6 +45,7 @@ public class EmotiguyIdentification : MonoBehaviour {
    bool shift;
    bool started;
    bool Animation;
+   bool focused;
 
    static int moduleIdCounter = 1;
    int moduleId;
@@ -48,6 +57,8 @@ public class EmotiguyIdentification : MonoBehaviour {
       foreach (KMSelectable Key in Keyboard) {
          Key.OnInteract += delegate () { KeyPress(Key); return false; };
       }
+      GetComponent<KMSelectable>().OnFocus += delegate () { focused = true; };
+      GetComponent<KMSelectable>().OnDefocus += delegate () { focused = false; };
       GetComponent<KMBombModule>().OnActivate += delegate () { Aids(); };
    }
 
@@ -56,6 +67,18 @@ public class EmotiguyIdentification : MonoBehaviour {
          return;
       }
       Audio.PlaySoundAtTransform("God", transform);
+   }
+
+   void Update()
+   {
+      if (focused || Application.isEditor)
+      {
+         for (int i = 0; i < TypableKeys.Count(); i++)
+         {
+            if (UnityEngine.Input.GetKeyDown(TypableKeys[i]))
+               Keyboard[i].OnInteract();
+         }
+      }
    }
 
    void KeyPress (KMSelectable Key) {
