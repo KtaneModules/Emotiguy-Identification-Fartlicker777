@@ -1523,7 +1523,7 @@ GameObject:
   - component: {fileID: 114047316848562976}
   - component: {fileID: 114188464836570266}
   m_Layer: 0
-  m_Name: Pickup Identification
+  m_Name: Emotiguy Identification
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13265,6 +13265,7 @@ MonoBehaviour:
   - {fileID: 114815655586597306}
   - {fileID: 114365865615557292}
   - {fileID: 114296681325586378}
+  - {fileID: 0}
   - {fileID: 114863976472554408}
   - {fileID: 114825998512435344}
   - {fileID: 114401367784243940}
@@ -13277,6 +13278,8 @@ MonoBehaviour:
   - {fileID: 114601866548478768}
   - {fileID: 114913852222442218}
   - {fileID: 114429225773955520}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 114563187578021470}
   - {fileID: 114397697193693576}
   - {fileID: 114206245925486018}
@@ -13286,8 +13289,14 @@ MonoBehaviour:
   - {fileID: 114656367864713474}
   - {fileID: 114801570329102926}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   IsPassThrough: 0
-  ChildRowLength: 0
+  ChildRowLength: 14
   Highlight: {fileID: 114008361371920540}
   SelectableColliders: []
   DefaultSelectableIndex: 0
